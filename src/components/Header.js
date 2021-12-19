@@ -14,6 +14,19 @@ const shake = keyframes`
         transform: rotate(-10deg);
     }
 `
+const HeaderContainer = styled.div`
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  padding: 20%;
+`
+
+const HeaderTitle = styled.text`
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+  font-family: 'Gamja Flower', cursive;
+`
 
 const ShakingRabbit = styled(MerryRabbit)`
   animation: ${shake} infinite 1.5s linear;
@@ -21,11 +34,11 @@ const ShakingRabbit = styled(MerryRabbit)`
 
 const Header = () => {
   return (
-    <div>
-      <Snowfall snowflakeCount={50} />
-      <p>안뇽 병군삐❤️</p>
+    <HeaderContainer>
+      <Snowfall snowflakeCount={40} />
       <ShakingRabbit width={150} height={150} />
-    </div>
+      <HeaderTitle>안뇽 병군삐❤️</HeaderTitle>
+    </HeaderContainer>
   )
 }
 
