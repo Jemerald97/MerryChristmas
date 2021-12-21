@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import styled, { keyframes } from 'styled-components'
+//import useMediaQuery from 'react-responsive'
 import Snowfall from 'react-snowfall'
 import { ReactComponent as MerryRabbit } from '../assets/svgs/MerryRabbit.svg'
+import { ReactComponent as InitialTree } from '../assets/svgs/Tree.svg'
 
 const shake = keyframes`
     0%{
@@ -15,29 +17,42 @@ const shake = keyframes`
     }
 `
 const HeaderContainer = styled.div`
-  flex: 1;
-  justify-content: center;
-  align-items: center;
-  padding: 20%;
+  margin: 20px;
 `
-
-const HeaderTitle = styled.text`
-  justify-content: center;
-  align-items: center;
-  font-size: 30px;
+const ShakingRabbit = styled(MerryRabbit)`
+  width: 100px;
+  height: 100px;
+  margin: 5%;
+  animation: ${shake} infinite 1.5s linear;
+`
+const HeaderTitle = styled.div`
+  font-size: 1.5rem;
   font-family: 'Gamja Flower', cursive;
 `
 
-const ShakingRabbit = styled(MerryRabbit)`
-  animation: ${shake} infinite 1.5s linear;
-`
+const MESSAGE = [
+  '안뇽 병군삐❤️',
+  `나 물어볼 거 있어ㅎㅎ`,
+  '크리스마스 때 계획을',
+  '오빠가 완성해주지 않을래?',
+  '바보야!!',
+  '밑에 나무를 눌러봐바',
+]
 
+let i = 0
 const Header = () => {
+  const [message, setMessage] = useState(MESSAGE[0])
+  const onChangeMessage = () => {
+    i === 5 ? (i = 0) : (i = i + 1)
+    console.log(i)
+    setMessage(MESSAGE[0 + i])
+  }
   return (
     <HeaderContainer>
-      <Snowfall snowflakeCount={40} />
-      <ShakingRabbit width={150} height={150} />
-      <HeaderTitle>안뇽 병군삐❤️</HeaderTitle>
+      <Snowfall snowflakeCount={80} />
+      <ShakingRabbit onClick={onChangeMessage} />
+      <HeaderTitle>{message}</HeaderTitle>
+      {i === 5 && <InitialTree />}
     </HeaderContainer>
   )
 }
